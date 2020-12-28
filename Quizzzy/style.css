@@ -1,1 +1,15 @@
 /* authors: Kamil Donda, Remigiusz Drobinski */
+
+.logo {
+    margin: 0 auto;
+    display: block;
+}
+
+button {
+    display: block;
+    width: 50%;
+    height: 10vh;
+    width: 80vw;
+    margin: 10vh auto;
+    font-size: 5vh;
+}
