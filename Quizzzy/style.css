@@ -5,11 +5,24 @@
     display: block;
 }
 
-button {
+.title-button {
     display: block;
     width: 50%;
     height: 10vh;
     width: 80vw;
     margin: 10vh auto;
     font-size: 5vh;
+}
+
+h1 {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 1vh;
+    transform: translateX(-50%);
+}
+
+.back-button {
+    width: 10vw;
+    display: inline-block;
 }

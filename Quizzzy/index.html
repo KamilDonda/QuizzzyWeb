@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Formularz</title>
+        <title>Quizzzy</title>
         <meta name="author" content="co-authored by Kamil Donda, Remigiusz Drobinski">
         <meta name="description" content="Quizzzy">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,11 +11,30 @@
     </head>
     <body>
         <main>
+            <!-- Title screen -->
             <div class="page">
                 <img class="logo" src="images/logo.svg"/>
-                <button>Quizzzy!</button>
-                <button>Show results</button>
-                <button>About</button>
+                <button class="title-button" id="start-button">Quizzzy!</button>
+                <button class="title-button" id="results-button">Show results</button>
+                <button class="title-button" id="about-button">About</button>
+                </div>
+                
+                <!-- Quizzzy -->
+                <div class="page">
+                    <img class="back-button" src="images/back.svg"/>
+                    <h1>Quizzzy</h1>
+                </div>
+                
+                <!-- Results -->
+                <div class="page">
+                    <img class="back-button" src="images/back.svg"/>
+                    <h1>Results</h1>
+                </div>
+                
+                <!-- About -->
+            <div class="page">
+                <img class="back-button" src="images/back.svg"/>
+                <h1>About</h1>
             </div>
         </main>
     </body>
