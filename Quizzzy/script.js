@@ -275,7 +275,7 @@ const timeIsUp = () => {
       );
   }
   setTimeout(function () {
-    if (index < 10) {
+    if (index < 9) {
       index++;
       newQuiz();
       timerReset();
