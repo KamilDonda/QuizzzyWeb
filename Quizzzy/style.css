@@ -21,10 +21,28 @@
   border-radius: 25px;
 }
 
-button:hover {
+/* button:hover {
   border: 2px solid #008cba;
   color: #008cba;
   background-color: white;
+} */
+
+.correct-button, .correct-button:hover {
+  border: 2px solid #00ba0f;
+  color: #00ba0f;
+  background-color: #c6ffcb;
+}
+
+.incorrect-button, .incorrect-button:hover {
+  border: 2px solid #ba0000;
+  color: #ba0000;
+  background-color: #ffc6c6;
+}
+
+.time-is-up-button, .time-is-up-button:hover {
+  border: 2px solid #ba00aa;
+  color: #ba00aa;
+  background-color: #ffeef8;
 }
 
 .title-button {
@@ -37,14 +55,36 @@ h1 {
   margin: 0;
   position: absolute;
   left: 50%;
-  top: 1vh;
+  top: 3.5vh;
+  font-size: 1.75em;
   transform: translateX(-50%);
   padding: 0;
   white-space: nowrap;
 }
 
+h3 {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  font-size: 1em;
+  transform: translateX(-50%);
+  padding: 0;
+  white-space: nowrap;
+  font-weight: normal;
+}
+
+#question {
+  width: 90%;
+  height: 22px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20vh;
+}
+
 .back-button {
-  width: 10vw;
+  width: 2em;
+  margin-top: 2vh;
   display: inline-block;
 }
 
@@ -60,6 +100,27 @@ h1 {
   padding: 0;
 
   -webkit-overflow-scrolling: touch;
+}
+
+.difficulty {
+    top: 50%;
+    transform: translateY(-50%);
+    overflow:visible;
+}
+
+.answers {
+  top: 60%;
+  transform: translateY(-60%);
+  overflow:visible;
+}
+
+#timer {
+  width: 90%;
+  height: 22px;
+  position: absolute;
+  left: 50%;
+  top: 10vh;
+  transform: translateX(-50%);
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

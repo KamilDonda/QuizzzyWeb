@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8" />
         <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="script.js" charset="utf-8" defer></script>
     </head>
     <body>
@@ -42,12 +43,16 @@
             <div class="page">
                 <img class="back-button" src="images/back.svg" />
                 <h1>Select difficulty</h1>
-                <ul class="list" id="difficulty-list"></ul>
+                <ul class="list difficulty" id="difficulty-list"></ul>
             </div>
 
             <!-- Quiz -->
             <div class="page">
-                <h1>Question</h1>
+                <h3 id="category-name"></h3>
+                <h1 id="question-index"></h1>
+                <progress value="0" max="2000" id="timer"></progress>
+                <span id="question"></span>
+                <ul class="list answers" id="answer-list"></ul>
             </div>
         </main>
     </body>
