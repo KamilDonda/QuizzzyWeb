@@ -7,6 +7,7 @@ window.onload = () => {
   createAnswerList();
 };
 
+//#region VARIABLES AND CONSTS
 let currentPage = 0;
 let currentCategory = null;
 let currentDifficulty = null;
@@ -29,11 +30,13 @@ const titleButtons = document.getElementsByClassName("title-button");
 const backButton = document.getElementsByClassName("back-button");
 const categoryUL = document.getElementById("category-list");
 const difficultyUL = document.getElementById("difficulty-list");
-// const answerUL = document.getElementById("answer-list");
 const categoryName = document.getElementById("category-name");
 const questionIndex = document.getElementById("question-index");
 const questionName = document.getElementById("question");
+const refresh = document.getElementsByClassName("refresh");
+//#endregion
 
+//#region PAGES
 // Set the display of all to "none"
 const displayOffPages = () => {
   for (let i = 0; i < pages.length; i++) {
@@ -46,7 +49,9 @@ const setPages = () => {
   displayOffPages();
   pages[0].style.display = "block";
 };
+//#endregion
 
+//#region BUTTONS
 // Click button in title screen
 for (let i = 0; i < titleButtons.length; i++) {
   titleButtons[i].onclick = function () {
@@ -67,8 +72,9 @@ for (let i = 0; i < backButton.length; i++) {
     pages[currentPage].style.display = "block";
   };
 }
+//#endregion
 
-{/*         CATEGORY         */}
+//#region CATEGORY
 // List of categories
 const Categories = [
   { id: null, name: "All" },
@@ -124,8 +130,9 @@ const clickCategory = (e) => {
     }
   }
 };
+//#endregion
 
-{/*         DIFFICULTY         */}
+//#region DIFFICULTY
 // List of difficulty
 const Difficulties = ["Easy", "Medium", "Hard", "All"];
 
@@ -149,10 +156,9 @@ const clickDifficulty = (e) => {
     startQuizPage();
   }, 100);
 };
+//#endregion
 
-{
-  /*         QUIZ         */
-}
+//#region QUIZ
 // Start page with quiz
 const startQuizPage = () => {
   const URL = setCategoryAndDifficulty(currentCategory, currentDifficulty);
@@ -170,13 +176,23 @@ const startQuizPage = () => {
 
 const newQuiz = () => {
   let currentQuiz = quizList[index];
+
+  if(currentQuiz == null){
+    goToErrorPage();
+    return;
+  }
+
   category = currentQuiz.category;
   question = currentQuiz.question;
-  correctAnswer = currentQuiz.correct_answer;
+  correctAnswer = decode(currentQuiz.correct_answer);
 
   answers = currentQuiz.incorrect_answers;
   answers.push(correctAnswer);
   answers = answers.sort(() => Math.random() - 0.5);
+
+  console.log(answers);
+  console.log(correctAnswer);
+  console.log(decode(correctAnswer));
 
   categoryName.innerHTML = category;
   questionIndex.innerHTML = "Question " + (index + 1);
@@ -207,8 +223,11 @@ const createAnswerList = () => {
   }
 };
 
+// Click Answer
 const clickAnswer = (e) => {
-  let clickedAnswer = e.target.outerText;
+  const clickedAnswer = e.target.outerText;
+
+  console.log(clickedAnswer);
 
   // Change color of selected answer to green (correct) or red (uncorrect)
   setTimeout(function () {
@@ -227,10 +246,7 @@ const clickAnswer = (e) => {
   setTimeout(function () {
     for (let i = 0; i < 4; i++) {
       if (answerList[i].innerHTML == correctAnswer)
-        answerList[i].setAttribute(
-          "class",
-          "button answerList correct-button"
-        );
+        answerList[i].setAttribute("class", "button answerList correct-button");
     }
   }, 500);
 
@@ -245,6 +261,7 @@ const clickAnswer = (e) => {
   }, 2300);
 };
 
+//#region timer
 const timerStart = () => {
   timer = setInterval(function () {
     if (timeLeft <= 0) {
@@ -284,20 +301,49 @@ const timeIsUp = () => {
     }
   }, 2000);
 };
+//#endregion
+//#endregion
 
-{/*         Result         */}
+//#region RESULT
 const goToResult = () => {
-  console.log(RESULT);
+  pages[currentPage].style.display = "none";
+  currentPage = 6;
+  pages[currentPage].style.display = "block";
+
+  index = 0;
+
+  const result = document.getElementById("result");
+
+  result.innerHTML = `${RESULT}/10`;
 };
 
-{/*         API         */}
+for (let i = 0; i < refresh.length; i++) {
+  refresh[i].onclick = function () {
+    const ref = document.getElementsByClassName("ref")[i];
+    ref.classList.toggle("rotated");
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 500);
+  };
+}
+//#endregion
+
+//#region ERROR
+const goToErrorPage = () => {
+  pages[currentPage].style.display = "none";
+  currentPage = 7;
+  pages[currentPage].style.display = "block";
+};
+//#endregion
+
+//#region API
 const setCategoryAndDifficulty = (category, difficulty) => {
   let URL;
   difficulty = difficulty.toLowerCase();
 
   if (category !== null) {
     if (difficulty === "all") {
-      URL = `https://opentdb.com/api.php?amount=10&difficulty=${difficulty}&type=multiple`;
+      URL = `https://opentdb.com/api.php?amount=10&category=${category}&type=multiple`;
     } else {
       URL = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${difficulty}&type=multiple`;
     }
@@ -313,3 +359,10 @@ function Get(URL) {
   Httpreq.send(null);
   return Httpreq.responseText;
 }
+//#endregion
+
+const decode = (s) => {
+  const text = document.createElement("textarea");
+  text.innerHTML = s;
+  return text.value;
+};
