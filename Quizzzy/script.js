@@ -190,10 +190,6 @@ const newQuiz = () => {
   answers.push(correctAnswer);
   answers = answers.sort(() => Math.random() - 0.5);
 
-  console.log(answers);
-  console.log(correctAnswer);
-  console.log(decode(correctAnswer));
-
   categoryName.innerHTML = category;
   questionIndex.innerHTML = "Question " + (index + 1);
   questionName.innerHTML = question;
@@ -203,6 +199,7 @@ const newQuiz = () => {
   for (let i = 0; i < 4; i++) {
     answerList[i].innerHTML = answers[i];
     answerList[i].setAttribute("class", "button answerList");
+    answerList[i].disabled = false;
   }
 
   timerStart();
@@ -226,8 +223,12 @@ const createAnswerList = () => {
 // Click Answer
 const clickAnswer = (e) => {
   const clickedAnswer = e.target.outerText;
+  const answerList = document.getElementsByClassName("answerList");
 
-  console.log(clickedAnswer);
+  // Disable buttons if they was clicked
+  for (let i = 0; i < 4; i++) {
+    answerList[i].disabled = true;
+  }
 
   // Change color of selected answer to green (correct) or red (uncorrect)
   setTimeout(function () {
@@ -241,8 +242,7 @@ const clickAnswer = (e) => {
     index++;
   }, 100);
 
-  // Select right answer
-  const answerList = document.getElementsByClassName("answerList");
+  // Select right answer if uncorrect is selected
   setTimeout(function () {
     for (let i = 0; i < 4; i++) {
       if (answerList[i].innerHTML == correctAnswer)
@@ -284,6 +284,11 @@ const timerReset = () => {
 
 const timeIsUp = () => {
   const answerList = document.getElementsByClassName("answerList");
+  // Disable buttons if time is up
+  for (let i = 0; i < 4; i++) {
+    answerList[i].disabled = true;
+  }
+
   for (let i = 0; i < 4; i++) {
     if (answerList[i].innerHTML == correctAnswer)
       answerList[i].setAttribute(
