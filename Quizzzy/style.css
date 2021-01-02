@@ -179,3 +179,41 @@ h3 {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.logoImg{
+    height: 14vh;
+    width: 14vh;
+    text-align: center;
+    margin-left: 5vw;
+    float: left;
+    display: block;
+    font-size: 1.25em;
+    vertical-align: middle;
+}
+
+.sectionRow{
+    float: left; 
+    vertical-align: middle; 
+    font-size: 1.25em; 
+    margin-top: 5vh; 
+    margin-left: 10vw;
+}
+
+
+
+.row{
+    height: 15vh;
+    margin: 1vw;
+}
+
+li{
+    font-size: 1em;
+    list-style-type: none;
+    text-indent: 20px;
+}
+
+ul{
+    font-size: 1.25em;
+    border-left-width: 0;
+    padding-left: 5vw;
+}
