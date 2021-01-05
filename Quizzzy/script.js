@@ -330,6 +330,8 @@ const goToResult = () => {
   const result = document.getElementById("result");
 
   result.innerHTML = `${RESULT}/10`;
+
+  send();
 };
 
 for (let i = 0; i < refresh.length; i++) {
@@ -384,8 +386,10 @@ const decode = (s) => {
 
 //#region PHP
 const createJSON = () => {
+  let c = selectedCategory;
+  if (c === null) c = "All";
   json.date =  new Date().toLocaleDateString();
-  json.category = selectedCategory;
+  json.category = c;
   json.difficulty = selectedDifficulty;
   json.result = RESULT;
 
