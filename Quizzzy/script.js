@@ -386,10 +386,8 @@ const decode = (s) => {
 
 //#region PHP
 const createJSON = () => {
-  let c = selectedCategory;
-  if (c === null) c = "All";
   json.date =  new Date().toLocaleDateString();
-  json.category = c;
+  json.category = selectedCategory;
   json.difficulty = selectedDifficulty;
   json.result = RESULT;
 
@@ -417,6 +415,6 @@ const get = () => {
 };
 
 const showResponse = (responseJSON) => {
-  console.log(responseJSON);
+  console.log("Output", responseJSON);
 };
 //#endregion

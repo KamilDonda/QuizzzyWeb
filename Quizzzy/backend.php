@@ -25,10 +25,16 @@ if($input != null) {
     file_put_contents($fileName, json_encode($localJSON));
 }
 
-$myArr = array("Message");
+$size = count($localJSON);
 
-$myJSON = json_encode($myArr);
+$output = [];
 
-echo $myJSON;
+// Add ID to every object in array
+for($i = 0; $i < $size; $i++){
+    $obj = $localJSON[$i];
+    $obj->id = $i + 1;
+    array_push($output, $obj);
+}
 
+echo json_encode($output);
 ?>
