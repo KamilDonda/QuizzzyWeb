@@ -9,8 +9,8 @@ window.onload = () => {
 
 //#region VARIABLES AND CONSTS
 let currentPage = 0;
-let currentCategory = null;
-let currentDifficulty = null;
+let selectedCategory = null;
+let selectedDifficulty = null;
 
 let quizList;
 let category;
@@ -24,6 +24,8 @@ let RESULT = 0;
 const TIME = 2000;
 let timeLeft = TIME;
 let timer;
+
+const json = new Object();
 
 const pages = document.getElementsByClassName("page");
 const titleButtons = document.getElementsByClassName("title-button");
@@ -59,6 +61,8 @@ for (let i = 0; i < titleButtons.length; i++) {
       pages[currentPage].style.display = "none";
       currentPage = i + 1;
       pages[currentPage].style.display = "block";
+
+      if (currentPage === 2) clickResults();
     }, 100);
   };
 }
@@ -72,6 +76,12 @@ for (let i = 0; i < backButton.length; i++) {
     pages[currentPage].style.display = "block";
   };
 }
+//#endregion
+
+//#region RESULTS
+const clickResults = () => {
+  get();
+};
 //#endregion
 
 //#region CATEGORY
@@ -122,7 +132,7 @@ const clickCategory = (e) => {
   for (let i = 0; i < Categories.length; i++) {
     if (e.target.outerText === Categories[i].name) {
       setTimeout(function () {
-        currentCategory = Categories[i].id;
+        selectedCategory = Categories[i].id;
         pages[currentPage].style.display = "none";
         currentPage = 4;
         pages[currentPage].style.display = "block";
@@ -152,7 +162,7 @@ const prepopulateDifficulty = () => {
 // Get id of category and open difficulty page
 const clickDifficulty = (e) => {
   setTimeout(function () {
-    currentDifficulty = e.target.outerText;
+    selectedDifficulty = e.target.outerText;
     startQuizPage();
   }, 100);
 };
@@ -161,7 +171,7 @@ const clickDifficulty = (e) => {
 //#region QUIZ
 // Start page with quiz
 const startQuizPage = () => {
-  const URL = setCategoryAndDifficulty(currentCategory, currentDifficulty);
+  const URL = setCategoryAndDifficulty(selectedCategory, selectedDifficulty);
   const json = JSON.parse(Get(URL));
   quizList = json.results;
 
@@ -371,3 +381,38 @@ const decode = (s) => {
   text.innerHTML = s;
   return text.value;
 };
+
+//#region PHP
+const createJSON = () => {
+  json.date =  new Date().toLocaleDateString();
+  json.category = selectedCategory;
+  json.difficulty = selectedDifficulty;
+  json.result = RESULT;
+
+  const jsonString = JSON.stringify(json);
+  return jsonString;
+};
+
+const send = () => {
+  const request = new XMLHttpRequest();
+  request.open("POST", "backend.php", true);
+  request.setRequestHeader("Content-Type", "application/json");
+  request.send(createJSON());
+};
+
+const get = () => {
+  const request = new XMLHttpRequest();
+  request.open("GET", "backend.php", true);
+  request.onreadystatechange = function(){
+      if(this.readyState === 4 && this.status === 200){
+          const responseJSON = JSON.parse(this.responseText);
+          showResponse(responseJSON);
+      }
+  }
+  request.send();
+};
+
+const showResponse = (responseJSON) => {
+  console.log(responseJSON);
+};
+//#endregion
