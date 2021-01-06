@@ -5,6 +5,7 @@ window.onload = () => {
   prepopulateCategory();
   prepopulateDifficulty();
   createAnswerList();
+  get();
 };
 
 //#region VARIABLES AND CONSTS
@@ -81,7 +82,7 @@ for (let i = 0; i < backButton.length; i++) {
 
 //#region RESULTS
 const clickResults = () => {
-  get();
+  
 };
 
 // Prepopulate results page

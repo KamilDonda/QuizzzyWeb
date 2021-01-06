@@ -1,5 +1,7 @@
 /* authors: Kamil Donda, Remigiusz Drobinski */
-
+body {
+  margin: 0;
+}
 .logo {
   margin: 0 auto;
   display: block;
@@ -74,7 +76,7 @@ h3 {
 }
 .back-button {
   width: 2em;
-  margin-top: 2vh;
+  margin-top: 3vh;
   display: inline-block;
 }
 .list {
@@ -123,6 +125,8 @@ h3 {
   transform: translate(-50%, -50%);
   font-size: 3em;
 }
+
+/* Refresh button */
 .refresh {
   background-color: transparent;
   border: none;
@@ -180,6 +184,8 @@ h3 {
     height: 15vh;
     margin: 1vw;
 }
+
+/* List */
 li{
     font-size: 1em;
     list-style-type: none;
@@ -189,4 +195,25 @@ ul{
     font-size: 1.25em;
     border-left-width: 0;
     padding-left: 5vw;
+}
+
+/* Table */
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.9em;
+  border-collapse: collapse;
+  width: 100%;
+}
+table td, table th {
+  border: 1px solid #ddd;
+  padding: 6px;
+}
+table tr:nth-child(even){background-color: #f2f2f2;}
+table tr:hover {background-color: #ddd;}
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #008cba;
+  color: white;
 }
