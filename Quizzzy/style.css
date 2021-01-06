@@ -2,6 +2,18 @@
 body {
   margin: 0;
 }
+#title-screen {
+  display: flex !important;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.column {
+  flex: 50%;
+  align-self: center;
+}
 .logo {
   margin: 0 auto;
   display: block;
@@ -13,7 +25,6 @@ body {
   display: block;
   text-align: center;
   text-decoration: none;
-  width: 50%;
   height: 10vh;
   width: 80vw;
   margin: 3vh auto;
@@ -21,11 +32,6 @@ body {
   outline: none;
   border-radius: 25px;
 }
-/* button:hover {
-  border: 2px solid #008cba;
-  color: #008cba;
-  background-color: white;
-} */
 .correct-button, .correct-button:hover {
   border: 2px solid #00ba0f;
   color: #00ba0f;
@@ -42,9 +48,10 @@ body {
   background-color: #ffeef8;
 }
 .title-button {
-    height: 13vh;
-    margin: 5vh auto;
-    font-size: 5vh;
+    height: 13vh !important;
+    margin: 5vh auto !important;
+    font-size: 5vh !important;
+    display: block !important;
 }
 h1 {
   margin: 0;
@@ -78,7 +85,9 @@ h3 {
   width: 2em;
   margin-top: 3vh;
   display: inline-block;
+  margin-left: 1vw;
 }
+/* List */
 .list {
   list-style-type: none;
   position: absolute;
@@ -87,8 +96,9 @@ h3 {
   left: 20px;
   right: 20px;
   overflow: scroll;
-  margin: 0;
   padding: 0;
+  width: 90%;
+  margin: 0 auto;
 
   -webkit-overflow-scrolling: touch;
 }
@@ -102,6 +112,10 @@ h3 {
   transform: translateY(-60%);
   overflow:visible;
 }
+.answerList {
+  font-size: 0.75em !important;
+}
+/* Timer */
 #timer {
   width: 90%;
   height: 22px;
@@ -163,35 +177,40 @@ h3 {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-.logoImg{
-    height: 14vh;
-    width: 14vh;
+.logoImg {
+    width: 12vh;
     text-align: center;
     margin-left: 5vw;
     float: left;
     display: block;
-    font-size: 1.25em;
     vertical-align: middle;
 }
-.sectionRow{
+.sectionRow {
     float: left; 
     vertical-align: middle; 
+    display: inline-block;
     font-size: 1.25em; 
-    margin-top: 5vh; 
     margin-left: 10vw;
+    width: 50vw;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.row{
+.row {
     height: 15vh;
     margin: 1vw;
+    position: relative;
+}
+a {
+  text-decoration: none;
 }
 
-/* List */
-li{
+li {
     font-size: 1em;
     list-style-type: none;
     text-indent: 20px;
 }
-ul{
+ul {
     font-size: 1.25em;
     border-left-width: 0;
     padding-left: 5vw;
@@ -199,10 +218,14 @@ ul{
 
 /* Table */
 table {
+  margin-top: 5vh;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.9em;
   border-collapse: collapse;
   width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 table td, table th {
   border: 1px solid #ddd;
@@ -216,4 +239,56 @@ table th {
   text-align: left;
   background-color: #008cba;
   color: white;
+}
+
+@media (orientation: landscape) {
+  .list {
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+    list-style-position: inside;
+    bottom: unset;
+  }
+  .button {
+    width: 40vw;
+    display: inline-block;
+    height: 20vh;
+    font-size: 1em;
+  }
+  .difficulty {
+    top: 25%;
+    transform: none;
+  }
+  .answers {
+    top: 40%;
+    transform: none;
+  }
+  h1 {
+    top: 4vh;
+  }
+  #timer {
+    top: 15vh;
+  }
+  #question {
+    top: 25vh;
+  }
+  #title-screen {
+    flex-direction: row;
+  }
+  .title-button {
+    width: 50vw !important;
+    height: 20vh !important;
+    font-size: 2em !important;
+  }
+  .logo {
+    width: 30vw;
+  }
+}
+
+@media (min-width:1000px) {
+  button:hover {
+    border: 2px solid #008cba;
+    color: #008cba;
+    background-color: white;
+  }
 }

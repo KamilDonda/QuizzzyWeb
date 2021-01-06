@@ -14,10 +14,16 @@
         <main>
             <!-- Title screen -->
             <div class="page">
-                <img class="logo" src="images/logo.svg" />
-                <button class="button title-button" id="start-button">Quizzzy!</button>
-                <button class="button title-button" id="results-button">Show results</button>
-                <button class="button title-button" id="about-button">About</button>
+                <div id="title-screen">
+                    <div class="column">
+                        <img class="logo" src="images/logo.svg" />
+                    </div>
+                    <div class="column">
+                        <button class="button title-button" id="start-button">Quizzzy!</button>
+                        <button class="button title-button" id="results-button">Show results</button>
+                        <button class="button title-button" id="about-button">About</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Category -->
@@ -48,26 +54,26 @@
                 <h1>About</h1>
                 <div id="panel">
                     <div class="row">
+                        <a href="https://github.com/KamilDonda/MobileWebApp">
                             <img class="logoImg" src="images/GitHub-Mark.png" />
                             <section class="sectionRow">GitHub</section>
+                        </a>
                     </div>
                     <div class="row">
+                        <a href="https://www.polsl.pl/Strony/Witamy.aspx">
                             <img class="logoImg" src="images/politechnika-slaska.png" />
-                            <section class="sectionRow">Politechnika</section>
+                            <section class="sectionRow">Silesian University of Technology</section>
+                        </a>
                     </div>
                     <div class="row">
+                        <a href="https://www.polsl.pl/Wydzialy/RMS/Strony/witamy.aspx">
                             <img class="logoImg" src="images/logoMS.png" />
-                            <section class="sectionRow">Wydział</section>
+                            <section class="sectionRow">Faculty of Applied Mathematics</section>
+                        </a>
                     </div>
                     <div class="row">
-                        <ul>Link do API
-                            <li>xxx</li>
-                        </ul>
-                        <ul>Opis aplikacji
-                            <li>yyy</li>
-                        </ul>
-                    </div>
-                    <div class="row">
+                        <ul><a href="https://opentdb.com/">API: Open Trivia</a></ul> 
+                        <ul>The application was written as a project from the subject of Mobile Web Applications.</ul>
                         <ul>Authors:
                             <li>Donda Kamil</li>
                             <li>Drobinski Remigiusz</li>
