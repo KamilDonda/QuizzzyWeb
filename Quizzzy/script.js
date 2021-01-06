@@ -36,6 +36,7 @@ const categoryName = document.getElementById("category-name");
 const questionIndex = document.getElementById("question-index");
 const questionName = document.getElementById("question");
 const refresh = document.getElementsByClassName("refresh");
+const table = document.getElementById("result-table");
 //#endregion
 
 //#region PAGES
@@ -81,6 +82,35 @@ for (let i = 0; i < backButton.length; i++) {
 //#region RESULTS
 const clickResults = () => {
   get();
+};
+
+// Prepopulate results page
+const prepopulateResults = (results) => {
+  for (let i = 0; i < results.length; i++) {
+    const tr = document.createElement("tr");
+
+    const td_id = document.createElement("td");
+    const td_date = document.createElement("td");
+    const td_result = document.createElement("td");
+    const td_category = document.createElement("td");
+    const td_difficulty = document.createElement("td");
+
+    const cat = Categories.find(n => n.id === results[i].category);
+
+    td_id.appendChild(document.createTextNode(results[i].id));
+    td_date.appendChild(document.createTextNode(results[i].date));
+    td_result.appendChild(document.createTextNode(results[i].result));
+    td_category.appendChild(document.createTextNode(cat.name));
+    td_difficulty.appendChild(document.createTextNode(results[i].difficulty));
+
+    tr.appendChild(td_id);
+    tr.appendChild(td_date);
+    tr.appendChild(td_result);
+    tr.appendChild(td_category);
+    tr.appendChild(td_difficulty);
+
+    table.appendChild(tr);
+  }
 };
 //#endregion
 
@@ -408,13 +438,13 @@ const get = () => {
   request.onreadystatechange = function(){
       if(this.readyState === 4 && this.status === 200){
           const responseJSON = JSON.parse(this.responseText);
-          showResponse(responseJSON);
+          prepopulateResults(responseJSON);
       }
   }
   request.send();
 };
 
-const showResponse = (responseJSON) => {
-  console.log("Output", responseJSON);
-};
+// const showResponse = (responseJSON) => {
+//   console.log("Output", responseJSON);
+// };
 //#endregion
