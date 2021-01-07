@@ -147,10 +147,13 @@ const Categories = [
 
 // Prepopulate category page
 const prepopulateCategory = () => {
-  for (let i = 0; i < Categories.length; i++) {
+
+  const temp = Categories.sort((a, b) => a.name.localeCompare(b.name));
+
+  for (let i = 0; i < temp.length; i++) {
     const li = document.createElement("li");
     const button = document.createElement("button");
-    button.innerHTML = Categories[i].name;
+    button.innerHTML = temp[i].name;
     button.onclick = clickCategory;
     button.setAttribute("class", "button");
     li.appendChild(button);
@@ -444,8 +447,4 @@ const get = () => {
   }
   request.send();
 };
-
-// const showResponse = (responseJSON) => {
-//   console.log("Output", responseJSON);
-// };
 //#endregion
