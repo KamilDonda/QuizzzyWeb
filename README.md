@@ -16,7 +16,7 @@ For the application to work fully, you need to download and install [PHP](https:
 To run the application on localhost, enter the command in cmd: ```php -S localhost:4000```. Of course, you can choose a different port.
 This way the application will run on your computer.
 
-To make the application available to anyone on your wifi network, you need to enter your computer's local IP address instead of "localhost".
+To make the application available to anyone on your local network, you need to enter your computer's local IP address instead of "localhost".
 To check your local IP, enter the command in cmd: ```ipconfig```.
 Then: ```php -S {your:ip}:4000```, E.g. ```php -S 192.168.0.5:4000```.
 
