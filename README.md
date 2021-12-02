@@ -1,7 +1,5 @@
 <h1 align="center">Quizzzy</h1>
 
-[<h3 align="center">Demo</h3>](https://quizzzyapp.000webhostapp.com/)
-
 ## About the project
 *Quizzzy* is a simple mobile web application. This is a quiz game. The user can choose a category and level of difficulty. Then 10 questions are displayed sequentially. There are four answers to each question. The response time is 20 seconds. After this time, if no answer has been chosen, the correct answer is marked. Finally, the result is displayed and saved in a JSON file.
 
